@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import  { useEffect, useState } from 'react';
 import { Button, TextField, Box, Grid } from '@mui/material';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-
 // Validation Schema using Yup
 const validationSchema = Yup.object({
   name: Yup.string().required('Name is required'),
@@ -14,10 +13,8 @@ const validationSchema = Yup.object({
     .matches(/^\d{10}$/, 'Phone number must be exactly 10 digits')
     .required('Phone number is required'),
 });
-
 const UserDataForm = () => {
   const [unsavedChanges, setUnsavedChanges] = useState(false);
-
   const formik = useFormik({
     initialValues: {
       name: '',
@@ -31,31 +28,24 @@ const UserDataForm = () => {
       console.log('User Data Saved:', values);
     },
   });
-  
   useEffect(() => {
-    if (!formik.values) return;
-  
+    if (!formik.values) return; 
     const hasChanges = (Object.keys(formik.values) as Array<keyof typeof formik.values>).some(
       (key) => formik.values[key]?.toString().trim() !== ''
     );
-  
-    setUnsavedChanges(hasChanges);
+   setUnsavedChanges(hasChanges);
   }, [formik.values]);
-  
   useEffect(() => {
     const handleBeforeUnload = (event: BeforeUnloadEvent) => {
       if (unsavedChanges) {
         event.returnValue = 'You have unsaved changes! Are you sure you want to leave?';
       }
     };
-
     window.addEventListener('beforeunload', handleBeforeUnload);
-
     return () => {
       window.removeEventListener('beforeunload', handleBeforeUnload);
     };
   }, [unsavedChanges]);
-
   return (
     <Box>
     <form onSubmit={formik.handleSubmit}>
@@ -145,8 +135,6 @@ const UserDataForm = () => {
       </Grid>
     </form>
   </Box>
-  
   );
 };
-
 export default UserDataForm;

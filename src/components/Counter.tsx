@@ -1,14 +1,11 @@
 import { useState } from 'react';
 import { animated, useSpring } from 'react-spring';
 import { Button, Box } from '@mui/material';
-
 const Counter = () => {
-  const [count, setCount] = useState(0);
-
+const [count, setCount] = useState(0);
   const backgroundAnimation = useSpring({
     backgroundColor: `rgba(0, 150, 255, ${count * 0.1})`
   });
-
   const increment = () => setCount(count + 1);
   const reset = () => setCount(0);
   const decrement = () => {
@@ -16,7 +13,6 @@ const Counter = () => {
       setCount(count - 1);
     }
   };
-
   return (
     <animated.div style={{ ...backgroundAnimation, padding: '20px', borderRadius: '10px' }}>
       <Box display="flex" flexDirection="column" alignItems="center">
@@ -69,5 +65,4 @@ const Counter = () => {
     </animated.div>
   );
 };
-
 export default Counter;

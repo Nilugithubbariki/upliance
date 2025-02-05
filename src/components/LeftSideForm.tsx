@@ -1,39 +1,31 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Button, TextField, Box, Grid } from '@mui/material';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-
 const validationSchema = Yup.object({
   name: Yup.string().required('Name is required'),
 });
-
 const generateId = () => Math.floor(1000 + Math.random() * 9000);
-
 const LeftSideForm = () => {
   const [users, setUsers] = useState<{ id: number; name: string }[]>([]);
   const [generatedId, setGeneratedId] = useState<number | null>(null);
-
   useEffect(() => {
     localStorage.removeItem('userList');
     setUsers([]);
   }, []);
-
   const formik = useFormik({
     initialValues: { name: '' },
     validationSchema,
     onSubmit: (values, { resetForm }) => {
       if (!generatedId) return;
-
       const newUser = { id: generatedId, name: values.name };
       const updatedUsers = [...users, newUser];
-
       localStorage.setItem('userList', JSON.stringify(updatedUsers));
       setUsers(updatedUsers);
       setGeneratedId(null);
       resetForm();
     },
   });
-
   useEffect(() => {
     if (formik.values.name && !generatedId) {
       setGeneratedId(generateId());
@@ -41,7 +33,6 @@ const LeftSideForm = () => {
       setGeneratedId(null);
     }
   }, [formik.values.name]);
-
   return (
     <Box>
       <form onSubmit={formik.handleSubmit}>
@@ -64,7 +55,6 @@ const LeftSideForm = () => {
               }}
             />
           </Grid>
-
           {/* ID Field (Auto-Generated, Empty After Refresh) */}
           <Grid item xs={12}>
             <TextField
@@ -81,7 +71,6 @@ const LeftSideForm = () => {
               }}
             />
           </Grid>
-
           {/* Name Field (Empty After Refresh) */}
           <Grid item xs={12}>
             <TextField
@@ -102,7 +91,6 @@ const LeftSideForm = () => {
               }}
             />
           </Grid>
-
           {/* Save Button (Always Enabled) */}
           <Grid item xs={12} sx={{ display: 'flex', justifyContent: 'center' }}>
             <Button variant="contained" color="primary" size="small" type="submit">
@@ -112,9 +100,6 @@ const LeftSideForm = () => {
         </Grid>
       </form>
     </Box>
-
-
   );
 };
-
 export default LeftSideForm;

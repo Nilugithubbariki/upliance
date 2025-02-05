@@ -1,14 +1,12 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Box } from '@mui/material';
 import Counter from './components/Counter';
 import UserForm from './components/UserForm';
 import LeftSideForm from "./components/LeftSideForm"
 import RichTextEditor from './components/RichTextEditor';
 import { useSpring, animated } from 'react-spring';
-
 const App = () => {
-  const [userData, setUserData] = useState<any>(null);
-
+const [userData, setUserData] = useState<any>(null);
   // React Spring animations for sequential box appearance
   const firstAnimation = useSpring({
     opacity: 1,
@@ -17,7 +15,6 @@ const App = () => {
     from: { opacity: 0, height: '0px' },
     config: { tension: 220, friction: 120 },
   });
-
   const secondAnimation = useSpring({
     opacity: 1,
     height: '30px',
@@ -26,7 +23,6 @@ const App = () => {
     delay: 200,  
     config: { tension: 220, friction: 120 },
   });
-
   const thirdAnimation = useSpring({
     opacity: 1,
     height: '30px',
@@ -35,7 +31,6 @@ const App = () => {
     delay: 400, 
     config: { tension: 220, friction: 120 },
   });
-
   return (
     <Box
   sx={{
@@ -83,7 +78,6 @@ const App = () => {
       <RichTextEditor />
     </Box>
   </Box>
-
   {/* Second Row: Left and Right Side Boxes */}
   <Box display="flex" flexDirection="row" gap="20px" width="100%" marginTop="20px" padding="10px">
     {/* Left Side Box */}
@@ -98,7 +92,6 @@ const App = () => {
     >
       <LeftSideForm />
     </Box>
-
     {/* Right Side Box (UserForm) */}
     <Box
       flex="1"
@@ -112,7 +105,6 @@ const App = () => {
       <UserForm />
     </Box>
   </Box>
-
   {/* Third Row: First Animated Box */}
   <animated.div style={firstAnimation}>
     <Box
@@ -133,7 +125,6 @@ const App = () => {
     >
     </Box>
   </animated.div>
-
   {/* Fourth Row: Second Animated Box */}
   <animated.div style={secondAnimation}>
     <Box
@@ -154,7 +145,6 @@ const App = () => {
     >
     </Box>
   </animated.div>
-
   {/* Fifth Row: Third Animated Box */}
   <animated.div style={thirdAnimation}>
     <Box
@@ -175,7 +165,6 @@ const App = () => {
     >
     </Box>
   </animated.div>
-
   {/* Display User Data after form submission */}
   {userData && (
     <Box
@@ -199,8 +188,6 @@ const App = () => {
     </Box>
   )}
 </Box>
-
   );
 };
-
 export default App;
