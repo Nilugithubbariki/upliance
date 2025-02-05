@@ -1,20 +1,48 @@
 import Counter from '../components/Counter';
 import RichTextEditor from '../components/RichTextEditor';
-import { Box } from '@mui/material';
+import { Box, Grid } from '@mui/material';
 const Home = () => {
   return (
-    <Box>
-      {/* Container for Counter and Rich Text Editor in one row */}
-      <Box display="flex" justifyContent="space-between" alignItems="flex-start" gap={2}>
+    <Box sx={{ padding: 2 }}>
+      {/* Responsive Container for Counter and Rich Text Editor */}
+      <Grid container spacing={2} sx={{ justifyContent: 'center' }}>
         {/* Counter Box */}
-        <Box flex={1} padding={2} border="1px solid #ccc" borderRadius={2}>
-          <Counter />
-        </Box>
+        <Grid item xs={12} sm={6} md={5} lg={5} xl={4}>
+          <Box
+            padding={2}
+            border="1px solid #ccc"
+            borderRadius={2}
+            height="100%"
+            display="flex"
+            flexDirection="column"
+            justifyContent="center"
+            sx={{
+              marginLeft: '20px',  // Apply left margin for slight shift
+              marginRight: 'auto',  // Ensure it's centered
+            }}
+          >
+            <Counter />
+          </Box>
+        </Grid>
         {/* Rich Text Editor Box */}
-        <Box flex={1} padding={2} border="1px solid #ccc" borderRadius={2}>
-          <RichTextEditor />
-        </Box>
-      </Box>
+        <Grid item xs={12} sm={6} md={5} lg={5} xl={4}>
+          <Box
+            padding={2}
+            border="1px solid #ccc"
+            borderRadius={2}
+            height="100%"
+            display="flex"
+            flexDirection="column"
+            justifyContent="center"
+            sx={{
+              marginLeft: '20px',  // Apply left margin for slight shift
+              marginRight: 'auto',  // Ensure it's centered
+            }}
+          >
+            <RichTextEditor />
+          </Box>
+        </Grid>
+      </Grid>
     </Box>
   );
 };

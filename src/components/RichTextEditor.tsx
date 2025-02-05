@@ -34,7 +34,7 @@ const RichTextEditor = () => {
     alert('Content Saved ✅');
   };
   return (
-    <Box sx={{ border: '2px solid white', padding: 2, borderRadius: '8px' }}>
+    <Box>
       <ReactQuill
         value={content}
         onChange={handleContentChange}
