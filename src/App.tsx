@@ -6,7 +6,7 @@ import LeftSideForm from "./components/LeftSideForm"
 import RichTextEditor from './components/RichTextEditor';
 import { useSpring, animated } from 'react-spring';
 const App = () => {
-const [userData, setUserData] = useState<any>(null);
+const [userData] = useState<any>(null);
   // React Spring animations for sequential box appearance
   const firstAnimation = useSpring({
     opacity: 1,
